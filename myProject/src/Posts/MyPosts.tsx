@@ -8,11 +8,11 @@ function MyPosts() {
 
   let dataCntx = useContext(DataContext);
   
-      const data = dataCntx.data;
+  const data = dataCntx?.data;
   
-      if (!data) {
-        return <h1 className="text-3xl">Loading...</h1>;
-      }
+  if (!data) {
+    return <h1 className="text-3xl">Loading...</h1>;
+  }
 
 
   function filterData() 

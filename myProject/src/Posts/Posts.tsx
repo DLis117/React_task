@@ -7,7 +7,8 @@ function Posts()
     let context = useContext(UserIdContext);
     let dataCntx = useContext(DataContext);
 
-    const data = dataCntx.data;
+     // Ensure data is correctly retrieved
+     const data = dataCntx?.data;
 
     if (!data) {
       return <h1 className="text-3xl">Loading...</h1>;
@@ -19,9 +20,9 @@ function Posts()
                 <Link to={`/MyPosts`} ><button  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" >show only my posts</button></Link>
                 <Link to={`/OtherPosts`}><button  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" >show only other's posts</button></Link>
 
-                {data?.length>0&&data.map((x,y)=>                   //to know from which page it was clicked
+                {data?.length>0&&data.map((x)=>                   //to know from which page it was clicked
                 <Link to={`/post/${x.id}`} state={{ from: '/posts' }} key={x.id}>
-                    <p className={x.userId===context.userId?"text-blue-700 font-bold":null}>{x.title}</p>
+                    <p className={x.userId===context?.userId?"text-blue-700 font-bold":""}>{x.title}</p>
                 </Link>)
                 }
             </>
@@ -29,3 +30,4 @@ function Posts()
 }
 
   export default Posts;
+  

@@ -1,10 +1,15 @@
-import { useState } from "react";
-import { createContext } from "react";
+import { createContext, ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 //create a context that stores id 
-export const DataContext = createContext(null);
-function DataProvider(props)
+export const DataContext  = createContext<{ data?: any[] } | null>(null);
+
+interface DataProviderProps 
+{
+    children: ReactNode;
+}
+
+function DataProvider({ children }: DataProviderProps)
 {
   
     const { data } = useQuery({
@@ -16,7 +21,7 @@ function DataProvider(props)
 
     return (
       <DataContext.Provider value={{ data }}>
-        {props.children}
+        {children}
       </DataContext.Provider>
     );
 }

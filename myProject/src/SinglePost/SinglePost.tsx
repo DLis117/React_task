@@ -6,7 +6,7 @@ function SinglePost() {
   const navigate = useNavigate();
   const { postId } = useParams();
 
-  const {data, error, isPending,isFetching } = useQuery({
+  const {data, error, isPending,isFetching } = useQuery<Comment[]>({
     queryKey: ['repoData2'],
     queryFn: () =>
       fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`).then((res) => res.json()),
@@ -23,12 +23,22 @@ function SinglePost() {
 
   if (isPending||isFetching) return <h1 className="text-3xl">Loading...</h1>;
   if (error) return <h1>{`An error has occurred: ${error.message}`}</h1>;
+
+  // Define TypeScript interface for a comment
+interface Comment {
+  id: number;
+  postId: number;
+  email: string;
+  name: string;
+  body: string;
+}
+
   return (
     <>
       <button onClick={handleGoBack} className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Back</button>
       
-          {data.map((x,y)=>
-          <div key={y} className="mb-5">
+          {data?.map((x)=>
+          <div key={x.id} className="mb-5">
               <p>comment id: {x.id}</p>
               <p>post id: {x.postId}</p>
               <p>email: {x.email}</p>

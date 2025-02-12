@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useState,ReactNode } from "react";
 import { createContext } from "react";
 
 //create a context that stores id 
-export const UserIdContext = createContext(null);
-function UserIdProvider (props)
+export const UserIdContext = createContext<{ data?: any[] } | null>(null);
+
+interface UserIdProviderProps 
+{
+    children: ReactNode;
+}
+
+function UserIdProvider ({ children }:UserIdProviderProps)
 {
     const [userId, setUserId] = useState();
   
     return (
       <UserIdContext.Provider value={{ userId, setUserId }}>
-        {props.children}
+        {children}
       </UserIdContext.Provider>
     );
 }

@@ -8,7 +8,7 @@ function MyPosts() {
 
   let dataCntx = useContext(DataContext);
   
-  const data = dataCntx.data;
+  const data = dataCntx?.data;
 
   if (!data) 
   {
