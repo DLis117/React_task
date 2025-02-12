@@ -5,8 +5,6 @@ import Posts from "./Posts/Posts";
 import MyPosts from "./Posts/MyPosts";
 import OtherPosts from "./Posts/OtherPosts";
 import SinglePost from "./SinglePost/SinglePost";
-import SingleMyPost from "./SinglePost/SingleMyPost";
-import SingleOtherPost from "./SinglePost/SingleOtherPost";
 import UserIdProvider from "./UserIdProvider";
 import './index.css'
 
@@ -31,8 +29,6 @@ function App() {
               <Route path="/MyPosts" element={<MyPosts/>}/>
               <Route path="/OtherPosts" element={<OtherPosts/>}/>
               <Route path="/post/:postId" element={<SinglePost/>}/>
-              <Route path="/Mypost/:postId" element={<SingleMyPost/>}/>
-              <Route path="/OtherPost/:postId" element={<SingleOtherPost/>}/>
             </Routes>
           </Router>
         </QueryClientProvider>

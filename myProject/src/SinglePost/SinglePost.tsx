@@ -1,41 +1,45 @@
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import {
-    useQuery,
-  } from '@tanstack/react-query'
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
-function SinglePost()
-{
-    const { isPending, error, data } = useQuery({
-        queryKey: ['repoData'],
-        queryFn: () =>
-            fetch('https://jsonplaceholder.typicode.com/posts').then((res) =>
-            res.json(),
-            ),
-    })
+function SinglePost() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { postId } = useParams();
 
-    if (isPending) return <h1>'Loading...'</h1>
+  // Access the state passed from Link
+  const fromPage = location.state?.from || '/'; // Fallback to '/' if no state is found
 
-    if (error) return <h1>{`An error has occurred: ${error.message}`}</h1>
+  // Query to fetch post data
+  const { isPending, error, data } = useQuery({
+    queryKey: ['repoData'],
+    queryFn: () =>
+      fetch('https://jsonplaceholder.typicode.com/posts').then((res) => res.json()),
+  });
 
+  if (isPending) return <h1>Loading...</h1>;
+  if (error) return <h1>{`An error has occurred: ${error.message}`}</h1>;
 
-    //params are those after ':' in path in  App.tsx
-    const params = useParams();
+  // Find the specific post based on the ID
+  const post = data?.find((x) => x.id == postId);
 
-    function filterPost()
-    {
-        let newData =  data.filter(x=>x.id==params.postId)
-        return (<>
-                    <p>id: {newData[0].id}</p>
-                    <p>user id: {newData[0].userId}</p>
-                    <p>title: {newData[0].title}</p>
-                    <p>body: {newData[0].body}</p>
-                </>)
-    }
-    
-    return (<>
-                <Link to={`/posts`}><button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" >{'<-'}</button></Link>
-                {filterPost()}
-            </>)
+  // Handle "Back" button navigation
+  const handleGoBack = () => {
+    navigate(fromPage);
+  };
+
+  return (
+    <>
+      <button onClick={handleGoBack} className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Back</button>
+      {post && (
+        <>
+          <p>id: {post.id}</p>
+          <p>user id: {post.userId}</p>
+          <p>title: {post.title}</p>
+          <p>body: {post.body}</p>
+        </>
+      )}
+    </>
+  );
 }
+
 export default SinglePost;
