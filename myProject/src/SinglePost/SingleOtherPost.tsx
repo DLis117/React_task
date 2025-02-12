@@ -4,7 +4,7 @@ import {
     useQuery,
   } from '@tanstack/react-query'
 
-function SinglePost()
+function SingleOtherPost()
 {
     const { isPending, error, data } = useQuery({
         queryKey: ['repoData'],
@@ -34,8 +34,8 @@ function SinglePost()
     }
     
     return (<>
-                <Link to={`/posts`}><button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" >{'<-'}</button></Link>
+                <Link to={'/OtherPosts'}><button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" >{'<-'}</button></Link>
                 {filterPost()}
             </>)
 }
-export default SinglePost;
+export default SingleOtherPost;

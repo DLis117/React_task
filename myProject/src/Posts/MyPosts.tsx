@@ -26,11 +26,11 @@ function MyPosts()
   {
     let newData = data.filter(x=>x.userId===context.userId);
 
-    return newData.map((x,y)=><Link key={y} to={`/post/${x.id}`}> <p>{x.title}</p></Link>)
+    return newData.map((x,y)=><Link key={y} to={`/MyPost/${x.id}`}> <p>{x.title}</p></Link>)
   }
     return (
             <>
-                <Link to={{pathname: `/posts`,state: { from: window.location.pathname }}}><button  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" >{'<-'}</button></Link>
+                <Link to={`/posts`}><button  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" >{'<-'}</button></Link>
                 {data?.length>0&&filterData()}
             </>
     )

@@ -27,7 +27,7 @@ function Posts()
                 <Link to={`/OtherPosts`}><button  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" >show only other's posts</button></Link>
 
                 {data?.length>0&&data.map((x,y)=>                   //to know from which page it was clicked
-                <Link key={x.id} to={{ pathname: `/post/${x.id}`, state: { from: 'posts' } }}>
+                <Link key={x.id} to={`/post/${x.id}`}>
                     <p style={x.userId===context.userId?{color: "blue",fontWeight:`bold`}:null}>{x.title}</p>
                 </Link>)
                 }

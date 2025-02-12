@@ -24,7 +24,7 @@ function OtherPosts()
   {
     let newData = data.filter(x=>x.userId!=context.userId);
 
-    return newData.map((x,y)=><Link key={y} to={`/post/${x.id}`}> <p>{x.title}</p></Link>)
+    return newData.map((x,y)=><Link key={y} to={`/OtherPost/${x.id}`}> <p>{x.title}</p></Link>)
   }
     return (
             <>

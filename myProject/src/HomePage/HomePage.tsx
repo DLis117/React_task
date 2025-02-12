@@ -7,7 +7,6 @@ import { UserIdContext } from '../UserIdProvider';
 function HomePage()
 {
     const context = useContext(UserIdContext);
-    console.log(context);
 
     function handleLogIn()
     {
