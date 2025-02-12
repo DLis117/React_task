@@ -11,7 +11,7 @@ function MyPosts() {
       const data = dataCntx.data;
   
       if (!data) {
-        return <h1>Loading...</h1>;
+        return <h1 className="text-3xl">Loading...</h1>;
       }
 
 
