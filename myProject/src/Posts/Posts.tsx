@@ -10,7 +10,6 @@ function Posts()
     let context = useContext(UserIdContext);
     let dataCntx = useContext(DataContext);
 
-
     const data = dataCntx.data;
 
     if (!data) {
@@ -28,7 +27,7 @@ function Posts()
                 to={`/post/${x.id}`} state={{ from: '/posts' }} // Directly pass the state here
                 key={x.id}
               >
-                    <p style={x.userId===context.userId?{color: "blue",fontWeight:`bold`}:null}>{x.title}</p>
+                    <p className={x.userId===context.userId?"text-blue-700 font-bold":null}>{x.title}</p>
                 </Link>)
                 }
             </>
