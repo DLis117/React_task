@@ -4,21 +4,18 @@ import {
 import { useContext } from 'react';
 import { UserIdContext } from '../UserIdProvider';
 import { Link } from 'react-router-dom'
+import { DataContext } from '../DataProvider';
 function Posts() 
 {
     let context = useContext(UserIdContext);
+    let dataCntx = useContext(DataContext);
 
-    const { isPending, error, data } = useQuery({
-      queryKey: ['repoData'],
-      queryFn: () =>
-        fetch('https://jsonplaceholder.typicode.com/posts').then((res) =>
-          res.json(),
-        ),
-    })
-  
-    if (isPending) return <h1>'Loading...'</h1>
-  
-    if (error) return <h1>{`An error has occurred: ${error.message}`}</h1>
+
+    const data = dataCntx.data;
+
+    if (!data) {
+      return <h1>Loading...</h1>;
+    }
   
     return (
             <>

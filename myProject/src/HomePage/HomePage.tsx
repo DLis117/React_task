@@ -1,12 +1,15 @@
 import { Link } from 'react-router';
 import { useContext } from 'react';
 import { UserIdContext } from '../UserIdProvider';
+import { DataContext } from '../DataProvider';
 
 
 
 function HomePage()
 {
     const context = useContext(UserIdContext);
+    const DataCntx = useContext(DataContext);
+    
 
     function handleLogIn()
     {

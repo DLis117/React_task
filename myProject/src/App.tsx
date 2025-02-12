@@ -6,6 +6,7 @@ import MyPosts from "./Posts/MyPosts";
 import OtherPosts from "./Posts/OtherPosts";
 import SinglePost from "./SinglePost/SinglePost";
 import UserIdProvider from "./UserIdProvider";
+import DataProvider from "./DataProvider";
 import './index.css'
 
 import {
@@ -20,19 +21,21 @@ function App() {
   return (
     <>
     {/* we need to wrap whole thing in order to be able to access data from UserIdProvider */}
-      <UserIdProvider>
-        <QueryClientProvider client={queryClient}>
-          <Router>
-            <Routes>
-              <Route path="/" element={<HomePage />}/>
-              <Route path="/posts" element={<Posts/>}/>
-              <Route path="/MyPosts" element={<MyPosts/>}/>
-              <Route path="/OtherPosts" element={<OtherPosts/>}/>
-              <Route path="/post/:postId" element={<SinglePost/>}/>
-            </Routes>
-          </Router>
-        </QueryClientProvider>
-      </UserIdProvider>
+      <QueryClientProvider client={queryClient}>
+        <UserIdProvider>
+          <DataProvider>
+              <Router>
+                <Routes>
+                  <Route path="/" element={<HomePage />}/>
+                  <Route path="/posts" element={<Posts/>}/>
+                  <Route path="/MyPosts" element={<MyPosts/>}/>
+                  <Route path="/OtherPosts" element={<OtherPosts/>}/>
+                  <Route path="/post/:postId" element={<SinglePost/>}/>
+                </Routes>
+              </Router>
+            </DataProvider>
+        </UserIdProvider>
+      </QueryClientProvider>
     </>
   )
 }
