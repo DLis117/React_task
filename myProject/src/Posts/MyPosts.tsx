@@ -23,8 +23,7 @@ function MyPosts() {
     return newData.map((x, y) => (
       <Link
         key={y}
-        to={`/post/${x.id}`} state={{ from: '/MyPosts' }}
-      >
+        to={`/post/${x.id}`} state={{ from: '/MyPosts' }}>
         <p>{x.title}</p>
       </Link>
     ));

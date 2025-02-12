@@ -28,8 +28,7 @@ function Posts()
 
                 {data?.length>0&&data.map((x,y)=>                   //to know from which page it was clicked
                 <Link
-                to={`/post/${x.id}`}
-                state={{ from: '/posts' }} // Directly pass the state here
+                to={`/post/${x.id}`} state={{ from: '/posts' }} // Directly pass the state here
                 key={x.id}
               >
                     <p style={x.userId===context.userId?{color: "blue",fontWeight:`bold`}:null}>{x.title}</p>
